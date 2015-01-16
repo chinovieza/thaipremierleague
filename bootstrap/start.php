@@ -23,12 +23,42 @@ $app = new Illuminate\Foundation\Application;
 | given environment, then we will automatically detect it for you.
 |
 */
-
+/*
 $env = $app->detectEnvironment(array(
 
 	'local' => array('homestead'),
 
 ));
+*/
+
+$env = $app->detectEnvironment(function()
+{
+	if (isset($_SERVER["HTTP_HOST"]) && $_SERVER["HTTP_HOST"]=="localhost") {
+		return 'local';
+	} else if (isset($_SERVER["HTTP_HOST"]) && $_SERVER["HTTP_HOST"]=="event.dev.truelife.com") {
+		return 'dev';
+	} else {
+
+		switch (dirname(__FILE__)) {
+            case '/Users/chinovieza/Documents/Development/www/tpl':
+                return 'local';
+                break;
+            case 'D:\www\thaipremierleague\bootstrap':
+                return 'local';
+                break;
+            case '/app/productFN/truelife/mstage/APACHE-ROOT/tpl':
+                return 'dev';
+                break;
+            case '/app/productFN/truelife/h/APACHE-ROOT/tpl':
+                return 'production';
+                break;
+            default :
+                return 'production';
+                break;
+        }
+
+	}
+});
 
 /*
 |--------------------------------------------------------------------------

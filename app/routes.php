@@ -20,3 +20,11 @@ Route::get('/materialize', function()
 {
 	return View::make('materialize');
 });
+
+Route::get('/env', function()
+{
+	$environment = App::environment();
+	return $environment;
+
+	//return dirname(__FILE__);
+});
