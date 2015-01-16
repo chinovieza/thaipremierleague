@@ -15,3 +15,8 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+Route::get('/materialize', function()
+{
+	return View::make('materialize');
+});
