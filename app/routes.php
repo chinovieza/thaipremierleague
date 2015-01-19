@@ -11,10 +11,14 @@
 |
 */
 
+/*
 Route::get('/', function()
 {
 	return View::make('hello');
 });
+*/
+
+Route::get('/', 'ContentController@home');
 
 Route::get('/materialize', function()
 {
